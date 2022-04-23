@@ -48,32 +48,32 @@ highest_averages_method <- function(votes, n_seats,
 }
 
 #' @export
-divisor <- function(divisor = c("dhondt", "jefferson", "greatest_divisors",
+divisor <- function(x = c("dhondt", "jefferson", "greatest_divisors",
 
-                                "webster", "sainte_lague",
-                                "modified_webster", "modified_sainte_lague",
+                          "webster", "sainte_lague",
+                          "modified_webster", "modified_sainte_lague",
 
-                                "adams",
-                                "danish",
-                                "dean",
-                                "equal_proportions",
-                                "huntington_hill",
-                                "imperiali")) {
-  if (is.character(divisor)) {
-    divisor <- arg_match(divisor,
-                         c("dhondt", "jefferson", "greatest_divisors",
+                          "adams",
+                          "danish",
+                          "dean",
+                          "equal_proportions",
+                          "huntington_hill",
+                          "imperiali")) {
+  if (is.character(x)) {
+    x <- arg_match(x,
+                   c("dhondt", "jefferson", "greatest_divisors",
 
-                           "webster", "sainte_lague",
-                           "modified_webster", "modified_sainte_lague",
+                     "webster", "sainte_lague",
+                     "modified_webster", "modified_sainte_lague",
 
-                           "adams",
-                           "danish",
-                           "dean",
-                           "equal_proportions",
-                           "huntington_hill",
-                           "imperiali"))
-    divisor <- switch(
-      divisor,
+                     "adams",
+                     "danish",
+                     "dean",
+                     "equal_proportions",
+                     "huntington_hill",
+                     "imperiali"))
+    x <- switch(
+      x,
 
       dhondt = function(x) x + 1,
       jefferson = function(x) x + 1,
@@ -93,26 +93,26 @@ divisor <- function(divisor = c("dhondt", "jefferson", "greatest_divisors",
       imperiali = function(x) x + 2
     )
   } else {
-    divisor <- as_function(divisor)
+    x <- as_function(x)
   }
 
-  divisor
+  x
 }
 
 #' @export
-quota <- function(quota = c("none", "hare", "droop", "imperiali")) {
-  if (is.character(quota)) {
-    quota <- arg_match(quota, c("none", "hare", "droop", "imperiali"))
-    quota <- switch(
-      quota,
+quota <- function(x = c("none", "hare", "droop", "imperiali")) {
+  if (is.character(x)) {
+    x <- arg_match(x, c("none", "hare", "droop", "imperiali"))
+    x <- switch(
+      x,
       none = function(votes, n_seats) 0,
       hare = function(votes, n_seats) sum(votes) / n_seats,
       droop = function(votes, n_seats) floor(sum(votes) / (n_seats + 1L)) + 1,
       imperiali = function(votes, n_seats) sum(votes) / (n_seats + 2L)
     )
   } else {
-    quota <- as_function(quota)
+    x <- as_function(x)
   }
 
-  quota
+  x
 }
