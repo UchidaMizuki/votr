@@ -14,9 +14,9 @@ highest_averages_method <- function(votes, n_seats,
                                     quota = c("none", "hare", "droop", "imperiali")) {
   votes <- vec_cast(votes, double())
   n_seats <- vec_cast(n_seats, integer())
-
   divisor <- divisor(divisor)
   quota <- quota(quota)
+
   stopifnot(
     all(votes >= 0),
     is_scalar_integer(n_seats),
