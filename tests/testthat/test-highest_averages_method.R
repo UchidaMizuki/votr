@@ -7,11 +7,11 @@ test_that("highest_averages_method", {
              pink = 3100)
   n_seats <- 10L
 
-  check <- function(divisor, expected,
-                    quota = "none") {
+  check <- function(fun_divisor, expected,
+                    fun_quota = "none") {
     out <- highest_averages_method(votes, n_seats,
-                                   divisor = divisor,
-                                   quota = quota)
+                                   fun_divisor = fun_divisor,
+                                   fun_quota = fun_quota)
     expect_equal(unname(out), expected)
   }
 
@@ -19,6 +19,6 @@ test_that("highest_averages_method", {
   check("sainte_lague", c(4, 2, 2, 1, 1, 0))
   check("modified_sainte_lague", c(5, 2, 2, 1, 0, 0))
   check("huntington_hill", c(5, 2, 2, 1, 0, 0),
-        quota = "hare")
+        fun_quota = "hare")
   check("adams", c(3, 2, 2, 1, 1, 1))
 })
